@@ -1,22 +1,28 @@
-import {html} from '../lib.js';
+import {html,until} from '../lib.js';
 import {getFoodById,deleteFoodByID,addCart} from '../api/data.js';
+import {loaderTemplate} from '../common/loader.js';
 
 const detailTemplate = (isAdmin,onDelete,food,authToken) => html`
-    <section id="details">
-        <h1>Име: ${food.name}
+        ${until(loadDetail(isAdmin,onDelete,food,authToken),loaderTemplate())}
+`;
 
-        </h1>
-        <div class="article-details">
-            <div class="article-img">
-                <img alt="article-alt" src=${food.imageUrl}>
-            </div>
-            <div class="article-description">
-                <h2>Съдържание</h2>
-                <p>
-                    ${food.description}
-                </p>
+async function loadDetail(isAdmin,onDelete,food,authToken) {
+    return html`
+        <section id="details">
+            <h1>Име: ${food.name}
 
-                ${authToken != null ? isAdmin === 'ADMIN' ? html`
+            </h1>
+            <div class="article-details">
+                <div class="article-img">
+                    <img alt="article-alt" src=${food.imageUrl}>
+                </div>
+                <div class="article-description">
+                    <h2>Съдържание</h2>
+                    <p>
+                        ${food.description}
+                    </p>
+
+                    ${authToken != null ? isAdmin === 'ADMIN' ? html`
                     <button @click=${onDelete} class="button danger">Изтрий</button>  <a href="/edit/${food.id}"
                                                                                          class="button danger">Промени</a>` : html`
                   
@@ -24,11 +30,12 @@ const detailTemplate = (isAdmin,onDelete,food,authToken) => html`
                     <button class="addCart" class="button danger">Добави в кошницата</button>` : ''}
 
 
-            </div>
+                </div>
 
-        </div>
-    </section>
-`;
+            </div>
+        </section>
+    `;
+}
 //  <input id="comment" type="text" placeholder="Коментар към поръчката" name="comment"><br>
 
 export async function detailsPage(context) {
@@ -40,7 +47,7 @@ export async function detailsPage(context) {
     const authToken = sessionStorage.getItem('authToken');
 
     const food = await getFoodById(itemId);
-    context.render(detailTemplate(isAdmin,onDelete,food,authToken));
+  await  context.render(detailTemplate(isAdmin,onDelete,food,authToken));
 
     async function onDelete(ev) {
         console.log('test works');

@@ -1,7 +1,14 @@
-import {html} from '../lib.js';
+import {html,until} from '../lib.js';
 import {editProfile} from '../api/data.js';
-
+import {loaderTemplate} from '../common/loader.js';
 const profileTemplate = (username,address,fullName,phoneNumber,onSubmit) => html`
+
+    ${until(loadProfile(username,address,fullName,phoneNumber,onSubmit),loaderTemplate())}
+    
+    
+`;
+async function loadProfile(username,address,fullName,phoneNumber,onSubmit) {
+    return html`
     <section id="user-profile-page" class="user-profile">
         <div class="user-content">
             <p><i class="fas fa-user"></i> Потребителско име:<p id="client">${username}</p></p>
@@ -25,7 +32,8 @@ const profileTemplate = (username,address,fullName,phoneNumber,onSubmit) => html
             </form>
         </section>
     </section>
-`;
+    `;
+}
 
 export async function profilePage(context) {
     const username = sessionStorage.getItem('username');
@@ -33,7 +41,7 @@ export async function profilePage(context) {
     const fullName = sessionStorage.getItem("fullName");
     const phoneNumber = sessionStorage.getItem("phoneNumber");
 
-    context.render(profileTemplate(username,address,fullName,phoneNumber,onSubmit));
+    await  context.render(profileTemplate(username,address,fullName,phoneNumber,onSubmit));
 
     async function onSubmit(ev) {
         ev.preventDefault();

@@ -1,6 +1,12 @@
-import {html} from '../lib.js';
+import {html,until} from '../lib.js';
 import {login} from '../api/data.js';
+import {loaderTemplate} from '../common/loader.js';
 const loginTemplate = (onSubmit) => html`
+    ${until(loadCatalog(onSubmit),loaderTemplate())}
+`;
+
+async function loadCatalog(onSubmit) {
+    return html`
     <section id="login">
         <form @submit=${onSubmit} id="login-form">
             <div class="container">
@@ -17,9 +23,10 @@ const loginTemplate = (onSubmit) => html`
         </form>
     </section>
 `;
+}
 
 export async function loginPage(context) {
-    context.render(loginTemplate(onSubmit));
+    await  context.render(loginTemplate(onSubmit));
     async function onSubmit(ev) {
         ev.preventDefault();
        // console.log('test');

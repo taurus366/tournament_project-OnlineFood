@@ -1,19 +1,14 @@
-import {html} from '../lib.js';
+import {html,until} from '../lib.js';
 import {getAllFoods} from '../api/data.js';
+import {loaderTemplate} from '../common/loader.js';
+
 
 
 const catalogTemplate = (foods) => html`
-    <section id="article-feed">
-        <h1>Каталог</h1>
-        <div id="articles">
-            <!-- Display : All articles in database ( If any ) -->
-            ${foods === null ? html`<p class="no-articles">Все още нямаме храна за
-                позказване.</p>` : foods.map(articleTemplate)}
-            <!-- Display : If there are no articles in database -->
-
-        </div>
-    </section>
+    ${until(loadCatalog(foods),loaderTemplate())}
 `;
+
+
 
 const articleTemplate = (food) => html`
     <div class="article">
@@ -29,6 +24,25 @@ const articleTemplate = (food) => html`
     </div>
 `;
 
+async function loadCatalog(foods) {
+
+    return html`
+        <!-- Display : All articles in database ( If any ) -->
+        <section id="article-feed">
+            <h1>Каталог</h1>
+            <div id="articles">
+
+                 ${foods === null ? html`<p class="no-articles">Все още нямаме храна за
+         позказване.</p>` : foods.map(articleTemplate)}
+            </div>
+        </section>
+        
+        
+       
+        <!-- Display : If there are no articles in database -->
+    `;
+}
+
 
 export async function catalogPage(context) {
     //const response = await fetch('http://localhost:3000/datas/catalog.json');
@@ -41,7 +55,7 @@ export async function catalogPage(context) {
     }catch (e) {
 
     }
-    context.render(catalogTemplate(foods));
+    await  context.render(catalogTemplate(foods));
 
 
 

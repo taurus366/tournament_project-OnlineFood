@@ -1,103 +1,19 @@
-import {html} from "../../lib.js";
+import {html,until} from "../../lib.js";
 import {getAllOrders,confirmOrDeleteOrder} from '../../api/data.js';
+import {loaderTemplate} from '../../common/loader.js';
+
+async function loadTable(data) {
+    return html`
+        ${data.length > 0 ? data.map(table2Template) : html`
+        <div class="no-order">Няма поръчки все още</div>`}
+    `;
+}
 
 
-// const ordersTemplate = (orders) => html`
-//     <div class="shopping-cart">
-//         <!-- Title -->
-//         <div class="title">
-//             Поръчки , ${orders.length}
-//         </div>
-//        <div class="item">
-// <!--        <div class="buttons">-->
-// <!--            <span id="delete-btn" class="delete-btn"><i id="delete-btn" class="fas fa-times"></i></span>-->
-// <!--            <span id="delete-btn" class="like-btn"></span>-->
-// <!--        </div>-->
-//
-// <!--        <div class="image">-->
-// <!--            <img id="shop" src=test alt=""/>-->
-// <!--        </div>-->
-//
-//         <div class="description">
-//             <span>test</span>
-//             <span>test</span>
-//             <span>test</span>
-//         </div>
-//
-// <!--        <div class="quantity">-->
-// <!--            <button id="plus-btn" class="plus-btn" type="button" name="button">-->
-// <!--                <img id="shop" src="../cartImages/plus.svg" alt=""/>-->
-// <!--            </button>-->
-// <!--            <input type="text" name="name" value=test>-->
-// <!--            <button id="minus-btn" class="minus-btn" type="button" name="button">-->
-// <!--                <img id="shop" src="../cartImages/minus.svg" alt=""/>-->
-// <!--            </button>-->
-// <!--        </div>-->
-//         <div class="price" id=test>Цена:</div>
-//         <div class="total-price">test</div>
-//         <div class="price right">лв.</div>
-//         <div class="product-id" id=test></div>
-//     </div>
-//     </div>
-// <!--    <div class="btn2">-->
-//     <!--        <button class="orderBtn" type="button">Поръчай</button>-->
-//     <!--    </div>-->
-// `;
-//
-// // const productTemplate = (order) => html`
-// //     <div class="item">
-// //         <div class="buttons">
-// //             <span id="delete-btn" class="delete-btn"><i id="delete-btn" class="fas fa-times"></i></span>
-// //             <span id="delete-btn" class="like-btn"></span>
-// //         </div>
-// //
-// //         <div class="image">
-// //             <img id="shop" src=${order.food.imageUrl} alt=""/>
-// //         </div>
-// //
-// //         <div class="description">
-// //             <span>${order.food.name}</span>
-// //             <span>${order.food.description}</span>
-// //             <span>${order.comment}</span>
-// //         </div>
-// //
-// //         <div class="quantity">
-// //             <button id="plus-btn" class="plus-btn" type="button" name="button">
-// //                 <img id="shop" src="../cartImages/plus.svg" alt=""/>
-// //             </button>
-// //             <input type="text" name="name" value=${order.foodCount}>
-// //             <button id="minus-btn" class="minus-btn" type="button" name="button">
-// //                 <img id="shop" src="../cartImages/minus.svg" alt=""/>
-// //             </button>
-// //         </div>
-// //         <div class="price" id=${order.food.price}>Цена:</div>
-// //         <div class="total-price">${(order.food.price * order.foodCount).toFixed(2)}</div>
-// //         <div class="price right">лв.</div>
-// //         <div class="product-id" id=${order.food.id}></div>
-// //     </div>
-// // `;
-//
-// export async function orderPage(context){
-//     const authToken = sessionStorage.getItem('authToken');
-//     let orders = null;
-//     try {
-//
-//         if (authToken != null){
-//             orders =  await getAllOrders();
-//         }
-//     }catch (e) {
-//         notify(e.message);
-//     }
-//
-//     context.render(ordersTemplate(orders));
-//
-//
-// }
 
 const tableTemplate = (data) => html`
 
-    ${data.length > 0 ? data.map(table2Template) : html`
-        <div class="no-order">Няма поръчки все още</div>`}
+  ${until(loadTable(data),loaderTemplate())}
 
 
 `;

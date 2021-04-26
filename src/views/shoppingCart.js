@@ -1,20 +1,27 @@
-import {html} from '../lib.js';
+import {html,until} from '../lib.js';
 import {getOrders, editQuantityProduct, postOrder} from '../api/data.js';
+import {loaderTemplate} from '../common/loader.js';
 
 const shoppingCartTemplate = (orders) => html`
-    <div class="shopping-cart">
-        <!-- Title -->
-        <div class="title">
-            Кошница
-        </div>
-        ${orders.length > 0 ? orders.map(productTemplate) : html`<p style="text-align: center">Кошницата ви е
-            празна!</p>`}
-    </div>
-    <div class="btn2">
-        ${orders.length > 0 ? html`
-            <button class="orderBtn" type="button">Поръчай</button>` : ''}
-    </div>
+    ${until(loadCart(orders),loaderTemplate())}
 `;
+
+async function loadCart(orders) {
+    return html`
+        <div class="shopping-cart">
+            <!-- Title -->
+            <div class="title">
+                Кошница
+            </div>
+            ${orders.length > 0 ? orders.map(productTemplate) : html`<p style="text-align: center">Кошницата ви е
+            празна!</p>`}
+        </div>
+        <div class="btn2">
+            ${orders.length > 0 ? html`
+            <button class="orderBtn" type="button">Поръчай</button>` : ''}
+        </div>
+    `;
+}
 
 const productTemplate = (order) => html`
     <div class="item">
@@ -60,7 +67,7 @@ export async function shoppingCartPage(context) {
     async function makeCallGetOrdersAndRender() {
         if (authToken !== null) {
             const orders = await getOrders({"session": {authToken}});
-            context.render(shoppingCartTemplate(orders));
+            await  context.render(shoppingCartTemplate(orders));
         }
     }
 
