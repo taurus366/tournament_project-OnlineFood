@@ -1,8 +1,14 @@
-import {html} from '../../lib.js';
+import {html,until} from '../../lib.js';
 import {getFoodById,editFood} from '../../api/data.js';
+import {loaderTemplate} from '../../common/loader.js';
 
 const editFoodTemplate = (food,onSubmit) => html`
-    <section id="edit-article">
+        ${until(loadEditForm(food,onSubmit),loaderTemplate())}
+`;
+
+async function loadEditForm(food,onSubmit) {
+    return html`
+      <section id="edit-article">
         <form @submit=${onSubmit} id="edit-form">
             <h1>Промяна на Артикула</h1>
             <div class="container">
@@ -20,7 +26,8 @@ const editFoodTemplate = (food,onSubmit) => html`
             </div>
         </form>
     </section>
-`;
+    `;
+}
 
 export async function editFoodPage(context) {
         const foodId = context.params.id;
