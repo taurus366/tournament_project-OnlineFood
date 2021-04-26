@@ -1,0 +1,45 @@
+.article-listings {
+    width: 86%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.my-article{
+    width: 25%;
+}
+
+
+.my-article>img {
+    margin: auto;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+}
+
+.article-title {
+    font-size: 30px;
+    text-decoration: none;
+    color: black;
+}
+
+.article-title:hover {
+    color: #4438ea;
+}
+
+#container>div.my-article>div>div>div {
+    padding-top: 20px;
+}
+
+.my-article-btn {
+    margin-top: 15px;
+    background-color: blue;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    opacity: 0.9;
+}

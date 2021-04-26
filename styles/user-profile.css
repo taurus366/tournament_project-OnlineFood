@@ -1,0 +1,36 @@
+
+#user-listings-title {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    border-bottom: 3px solid lightgrey;
+    margin: auto;
+    margin-bottom: 10px;
+    padding: 23px;
+    width: 60%;
+    text-decoration: none;
+    color: black;
+}
+
+i {
+    font-size: 20px;
+}
+
+
+.user-profile {
+    text-align: center;
+}
+
+
+.user-content {
+    margin-top: 50px;
+    margin-left: 30px;
+    text-align: center;
+    font-weight: bold;
+
+}
+
+.user-content > #client {
+    color: #0069d9;
+}

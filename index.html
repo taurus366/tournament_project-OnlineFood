@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <script type="module" src="/src/app.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.js" charset="utf-8"></script>
+    <title>Dinner</title>
+</head>
+<body>
+<div id="container">
+
+    <!-- Notifications -->
+    <section id="notifications" >
+        <div id="errorBox" class="notification" >
+            <span>MESSAGE</span>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav>
+        <a id="catalog" href="/catalog">Каталог</a>
+        <!-- Logged users -->
+        <div class="user">
+            <a id="create" href="/admin/create">Добави Храна</a>
+            <a id="orders" href="/admin/orders" >Поръчки</a>
+            <div class="profile">
+                <span>Здравейте, {email}</span>
+                <a id="cart" href="/cart">Кошница</a>
+                <a id="profile" href="/profile">Моят Профил</a>
+                <a itemid="logout" href="#" id="logout">Излез</a>
+            </div>
+        </div>
+        <!-- Guest users -->
+        <div class="guest">
+            <div class="profile">
+                <a id="login" href="/login">Влез</a>
+                <a id="register" href="/register">Регистрирай се</a>
+            </div>
+            <a class="active" id="begin" href="/">Начало</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+    </main>
+
+
+
+
+
+    <!-- Footer  -->
+    <footer class="footer">
+        <p>Created by Ali Zinal</p>
+    </footer>
+</div>
+
+
+</body>
+</html>
