@@ -6,6 +6,7 @@ import {loaderTemplate} from '../common/loader.js';
 
 const catalogTemplate = () => html`
     ${until(loadCatalog(),loaderTemplate())}
+  
 `;
 
 
@@ -48,7 +49,7 @@ export async function catalogPage(context) {
     //const response = await fetch('http://localhost:3000/datas/catalog.json');
   //  const foods = await response.json();
 
-   // let foods = null;
+    // let foods = null;
     try {
       //  foods = await getAllFoods();
         await  context.render(catalogTemplate());
