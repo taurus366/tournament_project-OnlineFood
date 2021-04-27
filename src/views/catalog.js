@@ -4,8 +4,8 @@ import {loaderTemplate} from '../common/loader.js';
 
 
 
-const catalogTemplate = (foods) => html`
-    ${until(loadCatalog(foods),loaderTemplate())}
+const catalogTemplate = () => html`
+    ${until(loadCatalog(),loaderTemplate())}
 `;
 
 
@@ -24,8 +24,8 @@ const articleTemplate = (food) => html`
     </div>
 `;
 
-async function loadCatalog(foods) {
-
+async function loadCatalog() {
+   const  foods = await getAllFoods();
     return html`
         <!-- Display : All articles in database ( If any ) -->
         <section id="article-feed">
@@ -48,14 +48,14 @@ export async function catalogPage(context) {
     //const response = await fetch('http://localhost:3000/datas/catalog.json');
   //  const foods = await response.json();
 
-    let foods = null;
+   // let foods = null;
     try {
-        foods = await getAllFoods();
-
+      //  foods = await getAllFoods();
+        await  context.render(catalogTemplate());
     }catch (e) {
-
+    notify(e.message)
     }
-    await  context.render(catalogTemplate(foods));
+
 
 
 

@@ -2,8 +2,9 @@ import * as api from './api.js';
 
  // const host = 'http://localhost:8080';
 //const host = 'http://77.71.76.17:3030';
-const host = 'http://127.0.0.1:8081/http://localhost:8080';
+//onst host = 'http://127.0.0.1:8081/http://localhost:8080';
 //const host = 'http://192.168.0.100:8081/http://192.168.0.100:8080';
+const host = 'http://77.71.76.17:8081/http://77.71.76.17:8080'
 api.settings.host = host;
 
 export const login = api.login;

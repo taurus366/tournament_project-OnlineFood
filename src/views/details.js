@@ -2,11 +2,12 @@ import {html,until} from '../lib.js';
 import {getFoodById,deleteFoodByID,addCart} from '../api/data.js';
 import {loaderTemplate} from '../common/loader.js';
 
-const detailTemplate = (isAdmin,onDelete,food,authToken) => html`
-        ${until(loadDetail(isAdmin,onDelete,food,authToken),loaderTemplate())}
+const detailTemplate = (isAdmin,onDelete,authToken,itemId) => html`
+        ${until(loadDetail(isAdmin,onDelete,authToken,itemId),loaderTemplate())}
 `;
 
-async function loadDetail(isAdmin,onDelete,food,authToken) {
+async function loadDetail(isAdmin,onDelete,authToken,itemId) {
+    const food = await getFoodById(itemId);
     return html`
         <section id="details">
             <h1>Име: ${food.name}
@@ -46,8 +47,8 @@ export async function detailsPage(context) {
     const itemId = context.params.id;
     const authToken = sessionStorage.getItem('authToken');
 
-    const food = await getFoodById(itemId);
-  await  context.render(detailTemplate(isAdmin,onDelete,food,authToken));
+
+  await  context.render(detailTemplate(isAdmin,onDelete,authToken,itemId));
 
     async function onDelete(ev) {
         console.log('test works');
