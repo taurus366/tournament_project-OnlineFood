@@ -12,7 +12,7 @@ const detailTemplate = (isAdmin,onDelete,authToken,food) => html`
                 <img alt="article-alt" src=${food.imageUrl}>
             </div>
             <div class="article-description">
-                <h2>Съдържание</h2>
+                <h2>Съдържание / <span id="price">Цена: ${food.price.toFixed(2)}лв.</span></h2>
                 <p>
                     ${food.description}
                 </p>

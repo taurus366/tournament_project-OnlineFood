@@ -81,3 +81,7 @@
     background-color: #ffc107;
     border-color: #ffc107;
 }
+#price {
+    color: #27ae60;
+    text-decoration: underline;
+}
