@@ -12,15 +12,11 @@ async function loadTable(data) {
 
 
 const tableTemplate = (data) => html`
-
   ${until(loadTable(data),loaderTemplate())}
-
-
 `;
 
 const table2Template = (data) => html`
     <div class="table">
-
         <div class="row header">
             <div class="cell">
                 Име: <p>${data.fullName}</p>
@@ -35,7 +31,6 @@ const table2Template = (data) => html`
                 Дата на поръчката: <p>${data.orderTime}</p>
             </div>
         </div>
-
         <div class="row random">
             <div class="cell">
                 Име:
@@ -50,10 +45,7 @@ const table2Template = (data) => html`
                 Цена:
             </div>
         </div>
-
-
         ${data.orders.map(rowTemplate)}
-
         <div class="row">
             <div class="cell">
             </div>
@@ -65,13 +57,10 @@ const table2Template = (data) => html`
                 <span id="total-price">Общо: ${data.totalPrice} лв.</span>
             </div>
         </div>
-
-
         <div class="btn-confirm" id=${data.username}>
             <button id="confirm-btn">Приеми поръчката</button>
             <button id="delete-btn">Изтрий поръчката</button>
         </div>
-
     </div>
 `;
 
@@ -90,7 +79,6 @@ const rowTemplate = (data) => html`
         <div class="cell">
             ${(data.foodCount * parseFloat(data.food.price).toFixed(2)).toFixed(2)}
         </div>
-
     </div>
 `;
 
@@ -100,34 +88,34 @@ export async function orderPage(context) {
     let order = [];
     await renderThePage(order);
     async function renderThePage() {
-      if (authToken !== null){
-          try {
-              orders = await getAllOrders({authToken});
-              Object.entries(orders)
-                  .forEach(([k, v]) => {
-                      let data = {};
-                      data['fullName'] = v[0].fullName;
-                      data['orders'] = v;
-                      data['username'] = k;
+        if (authToken !== null){
+            try {
+                orders = await getAllOrders({authToken});
+                Object.entries(orders)
+                    .forEach(([k, v]) => {
+                        let data = {};
+                        data['fullName'] = v[0].fullName;
+                        data['orders'] = v;
+                        data['username'] = k;
 
-                      let totalPrice = 0;
-                      v
-                          .forEach(value => {
-                              data['phoneNumber'] = value.phoneNumber;
-                              data['address'] = value.address;
-                              data['orderTime'] = value.orderDate;
-                              totalPrice += value.foodCount * value.price;
+                        let totalPrice = 0;
+                        v
+                            .forEach(value => {
+                                data['phoneNumber'] = value.phoneNumber;
+                                data['address'] = value.address;
+                                data['orderTime'] = value.orderDate;
+                                totalPrice += value.foodCount * value.price;
 
-                          })
-                      data['totalPrice'] = totalPrice.toFixed(2);
-                      order.push(data);
-                  })
-          } catch (e) {
-              notify(e.message);
-          }
-          context.render(tableTemplate(order));
-          order = [];
-      }
+                            })
+                        data['totalPrice'] = totalPrice.toFixed(2);
+                        order.push(data);
+                    })
+            } catch (e) {
+                notify(e.message);
+            }
+            context.render(tableTemplate(order));
+            order = [];
+        }
     }
 
 
@@ -138,7 +126,7 @@ export async function orderPage(context) {
 
 
 
-   document.querySelector('main').addEventListener('click', onClick);
+    document.querySelector('main').addEventListener('click', onClick);
 
     async function onClick(ev) {
         let option = {};
@@ -150,12 +138,12 @@ export async function orderPage(context) {
             option['type'] = type;
             option['username'] = username;
             option['authToken'] = authToken;
-        try {
-            notify(await confirmOrDeleteOrder(option));
-            await renderThePage(order);
-        }catch (e) {
-           notify(e.message);
-        }
+            try {
+                notify(await confirmOrDeleteOrder(option));
+                await renderThePage(order);
+            }catch (e) {
+                notify(e.message);
+            }
 
         }
     }

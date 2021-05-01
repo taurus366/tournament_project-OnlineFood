@@ -1,0 +1,105 @@
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+@import url("https://fonts.googleapis.com/css?family=Droid+Serif:400,700");
+/*.button-search {*/
+/*    color: #27ae60;*/
+/*    height: 25px;*/
+/*    border-radius: 25%;*/
+/*    padding-left: 15px;*/
+/*    padding-right: 15px;*/
+
+/*}*/
+* {
+    box-sizing: border-box;
+}
+.search {
+    display: inline-block;
+    font-family: "Montserrat", "Trebuchet MS", Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    padding: 0.8em 1.4em;
+    padding-right: 4.7em;
+    background: #009ed8;
+    border: none;
+    color: white;
+    transition: 0.2s;
+}
+.search:before,
+.search:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    padding-top: inherit;
+    padding-bottom: inherit;
+    width: 2.8em;
+    content: "\00a0";
+    font-family: "FontAwesome", sans-serif;
+    font-size: 1.2em;
+    text-align: center;
+    transition: 0.2s;
+    transform-origin: 50% 60%;
+}
+.search:before {
+    background: rgba(0, 0, 0, 0.1);
+}
+.search:hover {
+    background: #0079a5;
+}
+.search:active,
+.search:focus {
+    background: #002e3f;
+    /*outline: none;*/
+}
+.search {
+    min-width: 15em;
+}
+
+.arrow:after {
+    content: "\F054";
+}
+.arrow:hover:after {
+    -webkit-animation: bounceright 0.3s alternate ease infinite;
+    animation: bounceright 0.3s alternate ease infinite;
+}
+
+.search:after {
+    content: "\f002";
+}
+.search:hover:after {
+    -webkit-animation: none;
+    -webkit-transform: scale(1.4);
+    animation: none;
+    transform: scale(1.4);
+}
+@-webkit-keyframes bounceright {
+    from {
+        -webkit-transform: translateX(0);
+    }
+    to {
+        -webkit-transform: translateX(3px);
+    }
+}
+@-webkit-keyframes wiggle {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(30deg);
+    }
+}
+@keyframes bounceright {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(3px);
+    }
+}
+@keyframes wiggle {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(30deg);
+    }
+}

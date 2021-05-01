@@ -54,3 +54,6 @@ export async function getAllOrders(data) {
 export async function confirmOrDeleteOrder(data) {
     return await api.del(host + '/order/delete',data);
 }
+export async function getConfirmedOrdersByDate(data) {
+    return await api.post(host + '/confirm/confirmed',data);
+}

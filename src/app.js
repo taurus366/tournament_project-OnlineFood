@@ -13,6 +13,7 @@ import {shoppingCartPage} from "./views/shoppingCart.js";
 import {notify} from './notification.js';
 import {editFoodPage} from "./views/admin/edit.js";
 import {orderPage} from "./views/admin/order.js";
+import {confPage} from "./views/admin/confirmedOrders.js";
 
 const main = document.querySelector('main');
 
@@ -33,6 +34,7 @@ page('/details/:id', decorateContext, detailsPage);
 page('/edit/:id', decorateContext, editFoodPage);
 page('/admin/create', decorateContext, createPage)
 page('/admin/orders', decorateContext, orderPage)
+page('/admin/conforders', decorateContext, confPage);
 page('/cart', decorateContext, shoppingCartPage);
 page.start();
 setUserNav();
@@ -57,11 +59,13 @@ function setUserNav() {
         document.querySelector('#orders').style.display = 'block';
         document.querySelector('#cart').style.display = 'none';
         document.querySelector('#profile').style.display = 'none';
+        document.querySelector('#confirm-orders').style.display = 'block';
     }else {
         document.querySelector('#create').style.display = 'none';
         document.querySelector('#orders').style.display = 'none';
         document.querySelector('#cart').style.display = 'block';
         document.querySelector('#profile').style.display = 'block';
+        document.querySelector('#confirm-orders').style.display = 'none';
     }
 
     if (token !== null){
