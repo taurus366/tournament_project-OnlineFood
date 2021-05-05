@@ -2,18 +2,20 @@ import {html,until} from "../../lib.js";
 import {getAllOrders,confirmOrDeleteOrder} from '../../api/data.js';
 import {loaderTemplate} from '../../common/loader.js';
 
-async function loadTable(data) {
-    return html`
-        ${data.length > 0 ? data.map(table2Template) : html`
+const loadTable = (data) => html`
+    ${data.length > 0 ? data.map(table2Template) : html`
         <div class="no-order">Няма поръчки все още</div>`}
-    `;
-}
-
-
-
-const tableTemplate = (data) => html`
-  ${until(loadTable(data),loaderTemplate())}
 `;
+
+
+
+
+
+
+
+// const tableTemplate = (data) => html`
+//   ${until(loadTable(data),loaderTemplate())}
+// `;
 
 const table2Template = (data) => html`
     <div class="table">
@@ -87,6 +89,7 @@ export async function orderPage(context) {
     let orders = null;
     let order = [];
     await renderThePage(order);
+
     async function renderThePage() {
         if (authToken !== null){
             try {
@@ -113,7 +116,7 @@ export async function orderPage(context) {
             } catch (e) {
                 notify(e.message);
             }
-            context.render(tableTemplate(order));
+            context.render(loadTable(order));
             order = [];
         }
     }
@@ -130,7 +133,7 @@ export async function orderPage(context) {
 
     async function onClick(ev) {
         let option = {};
-
+        ev.preventDefault();
         if (ev.target.id === 'delete-btn' || ev.target.id === 'confirm-btn') {
             const type = ev.target.id;
             const username = ev.target.parentNode.id;

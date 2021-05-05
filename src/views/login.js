@@ -39,7 +39,7 @@ export async function loginPage(context) {
           context.setUserNav();
 
         await context.page.redirect('/catalog');
-          setTimeout(() =>{
+         setTimeout(() =>{
               location.reload();
           },1000);
 
