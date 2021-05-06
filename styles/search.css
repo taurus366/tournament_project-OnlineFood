@@ -11,13 +11,16 @@
 * {
     box-sizing: border-box;
 }
+#date {
+    padding: 1em 1em 1em 1em;
+    /*padding-right: 3em;*/
+}
 .search {
     display: inline-block;
     font-family: "Montserrat", "Trebuchet MS", Helvetica, sans-serif;
     -webkit-font-smoothing: antialiased;
     position: relative;
-    padding: 0.8em 1.4em;
-    padding-right: 4.7em;
+    padding: 0.8em 1em 1em 1em;
     background: #009ed8;
     border: none;
     color: white;

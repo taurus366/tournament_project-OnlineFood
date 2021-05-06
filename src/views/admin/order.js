@@ -88,7 +88,7 @@ export async function orderPage(context) {
     const authToken = sessionStorage.getItem('authToken');
     let orders = null;
     let order = [];
-    await renderThePage(order);
+    await renderThePage();
 
     async function renderThePage() {
         if (authToken !== null){
@@ -121,15 +121,7 @@ export async function orderPage(context) {
         }
     }
 
-
-
-
-    //  console.log(orders)
-
-
-
-
-    document.querySelector('main').addEventListener('click', onClick);
+     document.querySelector('.btn-confirm').addEventListener('click', onClick);
 
     async function onClick(ev) {
         let option = {};
@@ -137,13 +129,12 @@ export async function orderPage(context) {
         if (ev.target.id === 'delete-btn' || ev.target.id === 'confirm-btn') {
             const type = ev.target.id;
             const username = ev.target.parentNode.id;
-            // console.log(ev.target.id);
             option['type'] = type;
             option['username'] = username;
             option['authToken'] = authToken;
             try {
                 notify(await confirmOrDeleteOrder(option));
-                await renderThePage(order);
+                await renderThePage();
             }catch (e) {
                 notify(e.message);
             }

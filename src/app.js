@@ -18,6 +18,7 @@ import {confPage} from "./views/admin/confirmedOrders.js";
 const main = document.querySelector('main');
 
 document.querySelector('#logout').addEventListener('click',(ev) => {
+    ev.preventDefault();
     logout();
     setUserNav();
     page.redirect('/');
@@ -45,6 +46,8 @@ function decorateContext(context,next) {
     addOrRemoveActive(context.page.current.substring(1));
     next();
 }
+
+
 
 
 function setUserNav() {
@@ -89,18 +92,18 @@ function guestUserOnly(context,next) {
 }
 
 function addOrRemoveActive(where) {
-    if (where === 'login' || where === 'register' || where === '' || where === 'catalog' || where === 'profile' || where === 'admin/create' || where === 'cart' || where === 'admin/orders'){
+    if (where === 'login' || where === 'register' || where === '' || where === 'catalog' || where === 'profile' || where === 'admin/create' || where === 'cart' || where === 'admin/orders' || where === 'admin/conforders'){
         if (where.length === 0){
             where = 'begin';
-        }
+        }else
         if (where === 'admin/create'){
             where = 'create';
-        }
+        }else
         if (where === 'admin/orders'){
             where = 'orders';
-        }
-        if (where === 'admin/orders'){
-            where = 'orders';
+        }else
+        if (where === 'admin/conforders'){
+            where = 'confirm-orders';
         }
 
         document.querySelector(`#${where}`).classList.add('active');
