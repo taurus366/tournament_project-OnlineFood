@@ -55,7 +55,7 @@ const table2Template = (data) => html`
             </div>
             <div class="cell">
             </div>
-            <div class="cell">
+            <div class="cell" id="total-price-cell">
                 <span id="total-price">Общо: ${data.totalPrice} лв.</span>
             </div>
         </div>
