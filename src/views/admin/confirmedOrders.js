@@ -2,7 +2,6 @@ import {html,until,render} from '../../lib.js';
 import {getConfirmedOrdersByDate,getAllConfirmedOrders} from '../../api/data.js';
 import {loaderTemplate} from '../../common/loader.js';
 
-let totalPrice = 0;
 const confTemplate = (onClick) => html`
     ${until(loadSelectTemplate(onClick),loaderTemplate())}
     
@@ -25,7 +24,7 @@ async function loadSelectTemplate(onClick) {
              <div class="container">
                  <form @submit=${onClick}>
                  <select name="date" id="date">
-                     ${option !== null ? option.map(optionTemplate) : 'празно!'}
+                     ${option.length !== 0 ? option.map(optionTemplate) : html` <option value='empty'>Все още няма приети Поръчки</option>`}
                  </select>
                  <input type="submit" class="button  search" value="Търси">
                  </form>
@@ -80,31 +79,6 @@ async function tableTemplate2(authToken,date) {
         </section>
 `;
 }
-// const tableTemplate = (data, total) => html`
-//     <h2>Резултат:</h2>
-//     <div class="table">
-//
-//         <div class="row header">
-//             <div class="cell">
-//                 Име: <p></p>
-//             </div>
-//             <div class="cell">
-//                 Брой: <p></p>
-//             </div>
-//             <div class="cell">
-//                 Дата на поръчката:<p></p>
-//             </div>
-//             <div class="cell">
-//                 Цена: <p></p>
-//             </div>
-//         </div>
-//
-//
-//         ${data.map(rowTemplate)}
-//         ${totalPriceTemplate(total)}
-//
-//         </section>
-// `;
 
 const rowTemplate = (data) => html`
     <div class="row">
@@ -130,13 +104,12 @@ const totalPriceTemplate = (total) => html`
         </div>
         <div class="cell">
         </div>
-        <div class="cell">
+        <div class="cell" id="total-price-cell">
             <span id="total-price">Общо: ${total.toFixed(2)} лв.</span>
         </div>
     </div>
 `;
 
-//  ${data != null && data.length > 0 ? tableTemplate(data, total) : ''}
 export async function confPage(context) {
 
         context.render(confTemplate(onClick));
@@ -147,17 +120,7 @@ export async function confPage(context) {
         const authToken = sessionStorage.getItem('authToken');
         const date = input.value;
         try {
-            // const data = await getConfirmedOrdersByDate({
-            //     authToken,
-            //     date
-            // })
-            // let total = 0;
-            // Array.from(data)
-            //     .forEach(line => total += line.price);
-
           const table =  document.querySelector('#table')
-
-           //  render(tableTemplate(data, total),table)
             render(loadTableTemplate(authToken,date),table);
         } catch (e) {
             notify(e.message);
