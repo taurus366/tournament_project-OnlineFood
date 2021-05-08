@@ -7,16 +7,6 @@ const loadTable = (data) => html`
         <div class="no-order">Няма поръчки все още</div>`}
 `;
 
-
-
-
-
-
-
-// const tableTemplate = (data) => html`
-//   ${until(loadTable(data),loaderTemplate())}
-// `;
-
 const table2Template = (data) => html`
     <div class="table">
         <div class="row header">
@@ -120,10 +110,12 @@ export async function orderPage(context) {
             order = [];
         }
     }
+   const tables =  document.querySelectorAll('.table');
 
-     document.querySelector('.btn-confirm').addEventListener('click', onClick);
+    tables.forEach(line => line.querySelector('.btn-confirm').addEventListener('click', onClick));
 
     async function onClick(ev) {
+        console.log('clicked')
         let option = {};
         ev.preventDefault();
         if (ev.target.id === 'delete-btn' || ev.target.id === 'confirm-btn') {
@@ -134,7 +126,7 @@ export async function orderPage(context) {
             option['authToken'] = authToken;
             try {
                 notify(await confirmOrDeleteOrder(option));
-                await renderThePage();
+                 await renderThePage();
             }catch (e) {
                 notify(e.message);
             }
