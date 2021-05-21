@@ -17,7 +17,7 @@ async function loadCatalog(onSubmit) {
                 <input id="password" type="password" placeholder="парола" name="password">
                 <input type="submit" class="registerbtn button" value="Влез">
                 <div class="container signin">
-                    <p>Нямате профил? <a href="/register">Регистрирай се</a>.</p>
+                    <p>Нямате профил? <a href="/register">Регистрирай се</a></p>
                 </div>
             </div>
         </form>

@@ -1,11 +1,14 @@
 #notifications {
-    float: bottom;
+    /*float: bottom;*/
     position: absolute;
-    top: 0;
-    /*right: 0;*/
-
+    /*left: -50%;*/
+    /*top: 0;*/
+/*margin: auto;*/
     text-align: center;
     /*margin: 1em;*/
+    width: 50%;
+    /*border: 3px solid green;*/
+    margin: 0% 26%;
 }
 
 .notification {
@@ -28,5 +31,6 @@
     background: #393;
 }
 #errorBox>span {
-    background: #F50;
+    background: linear-gradient(red, yellow);
+
 }

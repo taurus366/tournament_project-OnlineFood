@@ -1,6 +1,6 @@
 #article-feed>h1 {
     display: block;
-    border-bottom: 3px solid lightgrey;
+    border-bottom: 3px solid #007bff;
     margin: auto;
     margin-bottom: 34px;
     padding: 23px;
@@ -9,6 +9,9 @@
     font-size: 50px;
     text-decoration: none;
     color: black;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to left, #dc3545, #27ae60);
+
 }
 
 #articles {
@@ -30,6 +33,7 @@
     border-radius: 2%;
 }
 
+
 .card {
     position: relative;
     display: -ms-flexbox;
@@ -38,10 +42,10 @@
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.25rem;
+    /*background-color: #fff;*/
+    /*background-clip: border-box;*/
+    /*border: 1px solid rgba(0, 0, 0, 0.125);*/
+    /*border-radius: 0.25rem;*/
 }
 .card img {
     flex-shrink: 0;
@@ -70,7 +74,7 @@ h2.article-title:hover {
 
 #data-buttons {
     padding: 0.75rem 1.25rem;
-    background-color: rgba(0, 0, 0, 0.03);
+    /*background-color: rgba(0, 0, 0, 0.03);*/
     border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
 

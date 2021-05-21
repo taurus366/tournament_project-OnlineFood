@@ -1,7 +1,7 @@
 .article-listings {
     width: 86%;
     height: 100%;
-    display: flex;
+    /*display: flex;*/
     flex-wrap: wrap;
     margin: auto;
 }
@@ -43,3 +43,9 @@
     width: 50%;
     opacity: 0.9;
 }
+
+/*.info {*/
+/*    background: #3a6186;  !* fallback for old browsers *!*/
+/*    background: -webkit-linear-gradient(to right, #89253e, #3a6186);  !* Chrome 10-25, Safari 5.1-6 *!*/
+/*    background: linear-gradient(to right, #89253e, #3a6186); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
+/*}*/

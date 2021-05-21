@@ -6,11 +6,12 @@ async function loadHome() {
         <section id="welcome">
             <div id="welcome-container">
                 <h1>Добре дошли</h1>
-                <img src="/src/images/971a8628-728d-4e96-beff-0472ee8ea8ed.jpeg" alt="article">
+                <img src="/src/images/kebab.jpg" alt="article">
                 <h2>Трябва да влезете в системата за да поръчате!</h2>
                 <div id="button-div">
                     <a href="/login" class="button">Влез</a>
                     <a href="/register" class="button">Регистрирай се</a>
+                    <a href="/" class="button">Поръчай без регистрация</a>
                 </div>
             </div>
         </section>

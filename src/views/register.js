@@ -26,7 +26,7 @@ async function loadRegister(onSubmit) {
                     <input id="names" type="text" placeholder="Име и фамилия" name="names">
                     <input type="submit" class="registerbtn button" value="Регистрирай">
                     <div class="container signin">
-                        <p>Вече имате профил?<a href="/login">Влез</a>.</p>
+                        <p>Вече имате профил?<a href="/login">Влез</a></p>
                     </div>
                 </div>
             </form>
