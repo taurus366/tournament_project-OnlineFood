@@ -14,37 +14,39 @@
 <body>
 <div id="container">
 
-    <!-- Notifications -->
-    <section id="notifications" >
-        <div id="errorBox" class="notification" >
-            <span>MESSAGE</span>
-        </div>
-    </section>
+ <header>
+     <!-- Notifications -->
+     <section id="notifications" >
+         <div id="errorBox" class="notification" >
+             <span>MESSAGE</span>
+         </div>
+     </section>
 
-    <!-- Navigation -->
-    <nav>
-        <a id="catalog" href="/catalog">Каталог</a>
-        <!-- Logged users -->
-        <div class="user">
-            <a id="create" href="/admin/create">Добави Храна</a>
-            <a id="orders" href="/admin/orders" >Поръчки</a>
-            <a id="confirm-orders" href="/admin/conforders" >Приети поръчки</a>
-            <div class="profile">
-                <span>Здравейте, {email}</span>
-                <a id="cart" href="/cart">Кошница</a>
-                <a id="profile" href="/profile">Моят Профил</a>
-                <a itemid="logout" href="#" id="logout">Излез</a>
-            </div>
-        </div>
-        <!-- Guest users -->
-        <div class="guest">
-            <div class="profile">
-                <a id="login" href="/login">Влез</a>
-                <a id="register" href="/register">Регистрирай се</a>
-            </div>
-            <a class="active" id="begin" href="/">Начало</a>
-        </div>
-    </nav>
+     <!-- Navigation -->
+     <nav>
+         <a id="catalog" href="/catalog">Каталог</a>
+         <!-- Logged users -->
+         <div class="user">
+             <a id="create" href="/admin/create">Добави Храна</a>
+             <a id="orders" href="/admin/orders" >Поръчки</a>
+             <a id="confirm-orders" href="/admin/conforders" >Приети поръчки</a>
+             <div class="profile">
+                 <span>Здравейте, {email}</span>
+                 <a id="cart" href="/cart">Кошница</a>
+                 <a id="profile" href="/profile">Моят Профил</a>
+                 <a itemid="logout" href="#" id="logout">Излез</a>
+             </div>
+         </div>
+         <!-- Guest users -->
+         <div class="guest">
+             <div class="profile">
+                 <a id="login" href="/login">Влез</a>
+                 <a id="register" href="/register">Регистрирай се</a>
+             </div>
+             <a class="active" id="begin" href="/">Начало</a>
+         </div>
+     </nav>
+ </header>
 
     <!-- Main Content -->
 

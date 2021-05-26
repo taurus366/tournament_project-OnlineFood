@@ -12,7 +12,7 @@ async function loadCatalog(onSubmit) {
             <div class="container">
                 <h1>Влез</h1>
                 <label for="username">Потребителско име</label>
-                <input id="username"  name="username" placeholder="потребителско име" type="text">
+                <input id="username" autofocus name="username" placeholder="потребителско име" type="text">
                 <label for="password">Парола</label>
                 <input id="password" type="password" placeholder="парола" name="password">
                 <input type="submit" class="registerbtn button" value="Влез">
