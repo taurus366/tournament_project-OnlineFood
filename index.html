@@ -12,7 +12,14 @@
     <title>Dinner</title>
 </head>
 <body>
-<div id="container">
+<script type='text/javascript'>
+    window.smartlook||(function(d) {
+        var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
+        var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
+        c.charset='utf-8';c.src='https://rec.smartlook.com/recorder.js';h.appendChild(c);
+    })(document);
+    smartlook('init', '76b7c0592dd82795a2002d8be8fd248325564afc');
+</script>
 
  <header>
      <!-- Notifications -->
@@ -60,10 +67,13 @@
 
 
     <!-- Footer  -->
-    <footer class="footer">
-        <p>Created by Ali Zinal</p>
-    </footer>
+<div class="footer" >
+    <p>Created by Ali Zinal</p>
 </div>
+<!--    <footer class="footer">-->
+
+<!--    </footer>-->
+
 
 
 </body>

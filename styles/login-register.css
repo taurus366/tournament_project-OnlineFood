@@ -6,6 +6,10 @@
     text-align: center;
 }
 
+.container > label{
+    display: block;
+}
+
 /* Full-width input fields */
 
 input[type=text], input[type=username], input[type=number], input[type=password] ,textarea{
@@ -83,6 +87,3 @@ a {
     margin-right: 60px;
 }
 
-.container > label{
-    display: block;
-}

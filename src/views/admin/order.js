@@ -2,6 +2,10 @@ import {html,until} from "../../lib.js";
 import {getAllOrders,confirmOrDeleteOrder} from '../../api/data.js';
 import {loaderTemplate} from '../../common/loader.js';
 
+const loadingTemplate = (data) => html`
+${until(loadTable(data),loaderTemplate())}
+`;
+
 const loadTable = (data) => html`
     ${data.length > 0 ? data.map(table2Template) : html`
         <div class="no-order">Няма поръчки все още</div>`}
@@ -106,7 +110,7 @@ export async function orderPage(context) {
             } catch (e) {
                 notify(e.message);
             }
-            context.render(loadTable(order));
+            context.render(loadingTemplate(order));
             order = [];
         }
     }
